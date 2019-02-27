@@ -1,54 +1,84 @@
 #include <iostream>
 #include <cstring>
+#include "node.h"
 
-using namespace std;
+using namespace std;  
 
-void printTree(int numarray[], int numofnum);
+TreeNode* add(TreeNode* root, int num);
+void print(TreeNode* root);
 
-void printTree(int numarray[], int numofnum) {
-  int counter = 0;
-  int n = 2;
-  int x = 2^n;
-  for (int i = 0; i < numofnum; i++) {
-     cout << numarray[i] << " ";
-    counter++;
-    if (counter == 1) {
-          cout << endl;
-    }
-    else if (counter != 1 && counter+1 == x) {
-      cout << "TEST" << endl;
-      //cout << counter+1 << " " << x << endl;
-      n = n+1;
-      x = 2^n;
-       cout << endl;
-    }
 
+TreeNode* add(TreeNode* root, int num) {
+  if (root == NULL) {
+
+    root = new TreeNode(num);
+    return root;
   }
+  else if (root->getNumber() == num) {
+    
+  }
+  else if (num < root->getNumber()) {
+
+    if (root->getLeft() != NULL) {
+    add(root->getLeft(), num);
+    }
+    else {
+
+      TreeNode* newleft = new TreeNode(num);
+      root->setLeft(newleft);
+      return newleft;
+    }
+  }
+  else if (num > root->getNumber()) {
+
+    if (root->getRight() != NULL) {
+    add(root->getRight(), num);
+    }
+    else {
+
+      TreeNode* newright = new TreeNode(num);
+      root->setRight(newright);
+      return newright;
+    }
+  }
+  
+}
 
 
 
+void print (TreeNode* root) {
+  cout << root->getNumber() << endl;
+  if (root->getLeft() != NULL) {
+
+    print(root->getLeft());
+  }
+  if (root->getRight() != NULL) {
+
+    print(root->getRight());
+  }
+ 
 }
 
 
 
 int main() {
-  int num;
-  int i = 0;
+  TreeNode* root = NULL;
+    cout << "How many numbers do you want to enter?" << endl;
   int numofnum = 0;
-  int numarray[numofnum];
-  bool done = false;
-  cout << "Enter how many numbers you want to enter" << endl;
   cin >> numofnum;
-  cout << "Enter numbers" << endl;
-  while (done == false) {
-    cin >> num; 
-    numarray[i] = num;
-    i++;
-    if (i == numofnum) {
-      done = true;
-    }
+  cout << "Enter your numbers" << endl;
+  int counter = 0;
+  int num = 0;
+  while (counter != numofnum) {
+    cin >> num;
+    if (counter == 0) {
+root = add(root, num);
   }
-  printTree(numarray, numofnum);
+  else {
+    add(root, num);
+  }
+  counter++;
+  }
+  print(root);
   return 0;
-
 }
