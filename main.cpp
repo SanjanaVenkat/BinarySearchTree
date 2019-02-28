@@ -241,7 +241,7 @@ TreeNode* remove (TreeNode* realroot, TreeNode* root, TreeNode* parent, int num,
 int main() {
   bool running = true;
   int response = 0;
-  cout << "Enter 1 for add, 2 for print, 3 for delete, and any other number to quit" << endl;
+  cout << "Enter 1 for add, 2 for print, 3 for delete" << endl;
   cin >> response;
   TreeNode* root = NULL;
   while (running != false) {
