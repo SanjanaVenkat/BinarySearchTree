@@ -13,8 +13,10 @@ class TreeNode {
   TreeNode* getRight();
   void setRight(TreeNode* newright);
   int getNumber();
- private:
+  TreeNode* getParent(TreeNode* root, int current, int out);
+private:
   TreeNode* left;
   TreeNode* right;
+  TreeNode* parent;
   int number;
 };
